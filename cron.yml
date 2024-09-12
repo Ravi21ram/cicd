@@ -6,22 +6,29 @@ on:
 
 jobs:
   commit:
-    name: Commit Changes
     runs-on: ubuntu-latest
-
     steps:
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'temurin'  # or 'adopt' or 'zulu'
+          java-package: jdk
+          check-latest: false
+          server-id: github
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
+          overwrite-settings: true
+          job-status: success
+          token: ***
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Update README.md
         run: |
           date=$(date +'%Y-%m-%d %H:%M:%S')
           echo "Last updated: $date" >> README.md
-
       - name: Commit changes
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add README.md
-          git commit -m "Automated commit every 5 minutes" || echo "No changes to commit"
+          git add .
+          git commit -m "Automated commit every 5 minutes"
           git push origin main
