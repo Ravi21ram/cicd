@@ -3,7 +3,7 @@ name: Scheduled Commit
 on:
   schedule:
     # Runs every 5 minutes
-    - cron: '*/5 * * * *'
+    - cron: '*/1 * * * *'
 
 jobs:
   commit:
