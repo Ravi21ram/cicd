@@ -13,7 +13,7 @@ jobs:
 
       - name: Update README
         run: |
-          echo "New content" >> README.md
+          echo "New content as of $(date)" >> README.md
 
       - name: Commit and push
         run: |
