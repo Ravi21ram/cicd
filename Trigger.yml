@@ -1,6 +1,8 @@
 name: Trigger
 
 on:
+  schedule:
+    - cron: "*/1 * * * *" # Runs every 2 minutes
   push:
     branches:
       - main
